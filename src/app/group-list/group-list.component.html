@@ -1,0 +1,20 @@
+<h1>Info Screen Groups</h1>
+<mat-grid-list cols="5" rowHeight="175px">
+  <mat-grid-tile
+    *ngFor="let item of presentationList"
+    [colspan]="2"
+    [rowspan]="1"
+  >
+    <!-- <div style="width:400px;height:250px;position:relative;border:1px solid black; overflow:hidden;">
+        <iframe style="position: absolute; width:1500px; height:2000px; top:-650px; right:-650px;" src="https://app.powerbi.com/reportEmbed?reportId=8d496b46-b582-4264-aa43-0e9467dcd0c4&autoAuth=true&ctid=097464b8-069c-453e-9254-c17ec707310d&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLW5vcnRoLWV1cm9wZS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D" frameborder="0"></iframe>
+    </div> -->
+    <div class="grid-container">
+      <h4 class="grid-item">{{ item.GroupName }}</h4>
+      <p>Assigned Computers</p>
+      <div class="grid-container" *ngFor="let pcItem of item.InfoScreens">
+        <div class="grid-item">{{ pcItem.Name }}</div>
+      </div>
+      <button class="btn">edit</button>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

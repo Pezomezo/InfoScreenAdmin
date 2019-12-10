@@ -1,0 +1,15 @@
+<p>URL edit page</p>
+<div style="width:500px; position:relative;">
+  <mat-list style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  background-color: darkgrey;
+                  margin: 4px;" *ngFor="let item of urlPresentation" >
+  <a style="padding-inline-end: 10%;">{{item.Url_Name}}</a>
+  <button class="list_button" [class.selected]="item === selectedURL" (click)="magiClick(item)"  mat-button>Magic</button>
+  <button class="list_button" mat-button>Presentation Settings</button>
+</mat-list>
+
+<app-magic [selectedURL]='selectedURL'></app-magic>
+
+</div>
