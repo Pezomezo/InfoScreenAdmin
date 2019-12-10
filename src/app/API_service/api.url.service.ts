@@ -19,6 +19,14 @@ export class URLService {
     );
   }
 
+  getURL(id: number): Observable<ResultModel<URL>> {
+    console.log('get url called with ID: ' + id);
+    return this.http.get<ResultModel<URL>>(this.urlRoute + '/' + id.toString()).pipe(
+      tap(_ => console.log('fetched Collections')),
+      catchError(this.handleError<ResultModel<URL>>('getUrl', null))
+    );
+  }
+
   postURL(url: URL) {
     return this.http.post(this.urlRoute, url).pipe(
       tap(_ => console.log('posted URL')),

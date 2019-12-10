@@ -1,8 +1,10 @@
-import { MagicSettings } from './../API_service/models/MagicSettings.model';
-import { MagicService } from './../API_service/api.magic.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ResultModel } from './../API_service/models/Result.model';
+import { URLService } from './../API_service/api.url.service';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { URL } from '../API_service/models/URL.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-magic',
@@ -10,18 +12,23 @@ import { URL } from '../API_service/models/URL.model';
   styleUrls: ['./magic.component.css']
 })
 export class MagicComponent implements OnInit {
-  @Input() selectedURL: URL;
-  magic: MagicSettings;
-  constructor( private http: MagicService,
-               private route: ActivatedRoute) { }
+  selectedUrl: URL;
+  constructor( private http: URLService,
+               private route: ActivatedRoute,
+               private router: Router) { }
 
   ngOnInit() {
-    console.log('Inside the magic Component');
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.http.getMagic(id).subscribe(magic => {
-      this.magic = magic.response[0];
-      console.log(this.magic);
+    const id = parseInt(this.route.snapshot.paramMap.get('id'));
+    console.log('Insode the magic comp: id: ' + id);
+
+    this.http.getURL(id).subscribe(data => {
+      console.log('indie http :  ' + data.response[0].Url_Name);
+      this.selectedUrl = data.response[0];
+      console.log('Selected URL: ' + this.selectedUrl);
     });
+  }
+  gotoHeroes() {
+    this.router.navigate(['/urls']);
   }
 
 }

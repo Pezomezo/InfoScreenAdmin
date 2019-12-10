@@ -1,6 +1,6 @@
-<p>magic works!</p>
+ <p>magic works!</p>
 
-<div *ngIf="selectedURL">
-  <a>{{selectedURL.Url_Name}}</a>
-  <iframe style="all: inherit;" src="selectedURL.URL"   height="magic.heigth" width="magic.width" ></iframe>
+<div *ngIf="selectedUrl">
+  <p>{{selectedUrl.Url_Name}}</p>
+  <button (click)="gotoHeroes()">Click me</button>
 </div>
