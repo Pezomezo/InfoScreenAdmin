@@ -1,10 +1,7 @@
-import { ResultModel } from './../API_service/models/Result.model';
 import { URLService } from './../API_service/api.url.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 import { URL } from '../API_service/models/URL.model';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-magic',
@@ -18,7 +15,7 @@ export class MagicComponent implements OnInit {
                private router: Router) { }
 
   ngOnInit() {
-    const id = parseInt(this.route.snapshot.paramMap.get('id'));
+    const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
     console.log('Insode the magic comp: id: ' + id);
 
     this.http.getURL(id).subscribe(data => {
