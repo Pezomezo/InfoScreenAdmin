@@ -18,8 +18,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { GroupListComponent } from './group-list/group-list.component';
 import { UrlListComponent } from './url-list/url-list.component';
 import { MagicComponent } from './magic/magic.component';
-import { ConfigureMagicComponent } from './configure-magic/configure-magic.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +25,6 @@ import { ConfigureMagicComponent } from './configure-magic/configure-magic.compo
     GroupListComponent,
     UrlListComponent,
     MagicComponent,
-    ConfigureMagicComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,17 @@
 <p>magic works!</p>
 
-<div *ngIf="selectedURL">
-  <a>{{selectedURL.Url_Name}}</a>
-  <iframe style="all: inherit;" src="selectedURL.URL"   height="magic.heigth" width="magic.width" ></iframe>
+<div *ngIf="selectedUrl">
+  <div
+    style="margin-left: 100px;  width:400px;height:250px;position:relative;border:1px solid black; overflow: hidden;"
+  >
+  <div class="move" style="width:200px;height:200px;position:absolute;border:1px solid black; overflow: hidden;"  >
+    <iframe
+      style="position: absolute; width:400px; height:250px; top:-50px; right:-50px;"
+      [src]="trustedURL"
+      frameborder="0"
+    ></iframe>
+  </div>
+
+  </div>
+  <button (click)="gotoHeroes()">Click me</button>
 </div>
