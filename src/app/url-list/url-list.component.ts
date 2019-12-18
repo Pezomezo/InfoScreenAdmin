@@ -1,6 +1,6 @@
 import { URL } from './../API_service/models/URL.model';
 import { Component, OnInit } from '@angular/core';
-import { URLService } from '../API_service/api.url.service';
+import { URLService } from '../API_service/services/api.url.service';
 
 @Component({
   selector: 'app-url-list',

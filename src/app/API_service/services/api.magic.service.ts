@@ -1,50 +1,42 @@
 import { Observable } from 'rxjs';
-import { URL } from './models/URL.model';
-import { ResultModel } from './models/Result.model';
+import { ResultModel } from '../models/Result.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
+import { MagicSettings } from '../models/MagicSettings.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class URLService {
-  urlRoute = '/api/presentation';
+export class MagicService {
+  urlRoute = '/api/magic';
   private constructor(private http: HttpClient) { }
 
-  getURLs(): Observable<ResultModel<URL>> {
-    return this.http.get<ResultModel<URL>>(this.urlRoute).pipe(
+  getMagic(id: number): Observable<ResultModel<MagicSettings>> {
+    return this.http.get<ResultModel<MagicSettings>>(this.urlRoute + '/{id}').pipe(
       tap(_ => console.log('fetched Collections')),
-      catchError(this.handleError<ResultModel<URL>>('getUrl', null))
+      catchError(this.handleError<ResultModel<MagicSettings>>('getMagic', null))
     );
   }
 
-  getURL(id: number): Observable<ResultModel<URL>> {
-    console.log('get url called with ID: ' + id);
-    return this.http.get<ResultModel<URL>>(this.urlRoute + '/' + id.toString()).pipe(
-      tap(_ => console.log('fetched Collections')),
-      catchError(this.handleError<ResultModel<URL>>('getUrl', null))
-    );
-  }
-
-  postURL(url: URL) {
+  postMagic(url: URL) {
     return this.http.post(this.urlRoute, url).pipe(
       tap(_ => console.log('posted URL')),
-      catchError(this.handleError<ResultModel<URL>>('postURL', null))
+      catchError(this.handleError<ResultModel<MagicSettings>>('postMagic', null))
     );
   }
 
-  deleteURL(id: number) {
+  deleteMagic(id: number) {
     return this.http.delete(this.urlRoute + '/${id}').pipe(
       tap(_ => console.log('deleted URL')),
-      catchError(this.handleError<ResultModel<URL>>('deleteURL', null))
+      catchError(this.handleError<ResultModel<MagicSettings>>('deleteMagic', null))
     );
   }
 
-  patchURL(id: number, url: URL) {
+  patchMagic(id: number, url: MagicSettings) {
     return this.http.patch(this.urlRoute + '/{id}', url).pipe(
       tap(_ => console.log('patched URL')),
-      catchError(this.handleError<ResultModel<URL>>('patchURL', null))
+      catchError(this.handleError<ResultModel<MagicSettings>>('patchMagic', null))
     );
   }
 

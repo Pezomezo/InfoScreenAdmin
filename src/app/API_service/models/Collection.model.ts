@@ -4,17 +4,17 @@ export class Collections
   ID: number;
   GroupID: number;
   GroupName: string;
-  InfoScreenID: number;
-  InfoScreenName: string;
-  InfoScreenPower_State: string;
-  Url_ID: number;
-  Url_Name: string;
+  InfoScreenPCID: number;
+  InfoScreenPCName: string;
+  PowerState: string;
+  UrlID: number;
+  UrlName: string;
   URL: string;
   MagicID: number;
-  MagicHeight: number;
-  MagicWidht: number;
+  Height: number;
+  Widht: number;
   PresentationID: number;
   Repetition: number;
-  Time_Frame: string;
-  Date: number;
+  TimeFrame: string;
+  StartDate: number;
 }

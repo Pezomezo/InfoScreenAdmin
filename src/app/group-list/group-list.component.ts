@@ -1,9 +1,10 @@
+import { IndividualScreenModel } from './../API_service/models/IndividualInfoScreen.model';
 import { URL } from './../API_service/models/URL.model';
 import { InfoScreenPC } from './../API_service/models/InfoScreen.model';
 import { Collections } from './../API_service/models/Collection.model';
 import { GroupListModel } from './../API_service/models/group-list.model';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../API_service/api.collection.service';
+import { CollectionsService } from '../API_service/services/api.collection.service';
 
 @Component({
   selector: 'app-group-list',
@@ -15,12 +16,18 @@ export class GroupListComponent implements OnInit {
   groupListModel: GroupListModel;
   groupListModelList: GroupListModel[] = [];
   presentationList: GroupListModel[];
+
+  individualModel: IndividualScreenModel;
+  individualModelList: IndividualScreenModel[] = [];
+  IndividualList: Collections[];
+  presentationListIndividuals: IndividualScreenModel[];
   infoSceen: InfoScreenPC = new InfoScreenPC();
   url: URL = new URL();
   numberList: number[] = [0];
   GroupNO = 0;
+  InfoScreenNO = 0;
   counter = 0;
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: CollectionsService) { }
 
   // 1. Get the biggest group number
   // 2. make loop with as many iterations as the groupnumber
@@ -37,6 +44,16 @@ export class GroupListComponent implements OnInit {
     });
   }
 
+  getBiggestInfoScreenNumber(collection: Collections[]) {
+    collection.forEach(value => {
+      if (this.numberList !== []) {
+        if (!this.numberList.includes(value.InfoScreenPCID)) {
+          this.InfoScreenNO = value.InfoScreenPCID;
+        }
+      }
+    });
+  }
+
   sortGroups(data: Collections[], groupNO: number, counter: number) {
     while (true) {
       if (counter === groupNO + 1) {
@@ -46,12 +63,12 @@ export class GroupListComponent implements OnInit {
       data.forEach(value => {
         if (value.GroupID === counter) {
           this.groupListModel.GroupName = value.GroupName;
-          this.infoSceen.ID = value.InfoScreenID;
-          this.infoSceen.Name = value.InfoScreenName;
-          this.infoSceen.Power_State = value.InfoScreenPower_State;
+          this.infoSceen.ID = value.InfoScreenPCID;
+          this.infoSceen.Name = value.InfoScreenPCName;
+          this.infoSceen.Power_State = value.PowerState;
           this.groupListModel.InfoScreens.push(this.infoSceen);
-          this.url.URL_ID = value.Url_ID;
-          this.url.Url_Name = value.Url_Name;
+          this.url.URLID = value.UrlID;
+          this.url.UrlName = value.UrlName;
           this.url.URL = value.URL;
           this.url.MagicID = value.MagicID;
           this.url.PresentationID = value.PresentationID;
@@ -69,8 +86,42 @@ export class GroupListComponent implements OnInit {
     return this.groupListModelList;
   }
 
+  sortScreenURLS(data: Collections[], screenID: number, counter: number) {
+    while (true) {
+      console.log(counter);
+      if (counter === screenID + 1) {
+        console.log('Exiting loop counter: ' + counter + ' - screenID: ' + screenID);
+        break;
+      }
+      this.individualModel = new IndividualScreenModel();
+      data.forEach(value => {
+        if (value.InfoScreenPCID === counter) {
+          console.log('counter: ' + counter + ' - InfoScreenPCID: ' +  value.InfoScreenPCID)
+          this.individualModel.InfoScreenPCID = value.InfoScreenPCID;
+          this.individualModel.InfoScreenName = value.InfoScreenPCName;
+          this.individualModel.PowerState = value.PowerState;
+          console.log('ID: ' + this.individualModel.InfoScreenPCID + ' - Name: ' + this.individualModel.InfoScreenName)
+          this.url.URLID = value.UrlID;
+          this.url.URL = value.URL;
+          this.url.UrlName = value.UrlName;
+          this.url.PresentationID = value.PresentationID;
+          this.individualModel.urls.push(this.url);
+          this.url = new URL();
+        }
+      });
+
+      if (this.individualModel.InfoScreenPCID) {
+        console.log(this.individualModel.InfoScreenName);
+        this.individualModelList.push(this.individualModel);
+      }
+
+      counter ++;
+    }
+    return this.individualModelList;
+  }
+
   ngOnInit() {
-    this.apiService.getCollections().subscribe(data => {
+    this.apiService.getCollections('all').subscribe(data => {
       console.log(data);
       this.Collections = data.response;
       this.getBiggestGroupNumber(this.Collections);
@@ -79,6 +130,16 @@ export class GroupListComponent implements OnInit {
         this.GroupNO,
         this.counter
       );
+    });
+
+    this.apiService.getCollections('individual').subscribe(result => {
+      this.counter = 0;
+      this.IndividualList = result.response;
+      this.getBiggestInfoScreenNumber(this.IndividualList);
+      this.presentationListIndividuals = this.sortScreenURLS(this.IndividualList, this.InfoScreenNO, this.counter );
+      console.log('data: ' + result.response);
+      console.log(this.IndividualList);
+      console.log('after sorting: ' + this.presentationListIndividuals);
     });
   }
 }
