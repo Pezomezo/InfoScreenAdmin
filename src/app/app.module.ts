@@ -12,13 +12,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { GroupListComponent } from './group-list/group-list.component';
 import { UrlListComponent } from './url-list/url-list.component';
 import { MagicComponent } from './magic/magic.component';
 import { IndividualScreensListComponent } from './individual-screens-list/individual-screens-list.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +31,8 @@ import { IndividualScreensListComponent } from './individual-screens-list/indivi
     UrlListComponent,
     MagicComponent,
     IndividualScreensListComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +47,12 @@ import { IndividualScreensListComponent } from './individual-screens-list/indivi
     MatListModule,
     MatGridListModule,
     HttpClientModule,
-    PdfViewerModule
+    PdfViewerModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
