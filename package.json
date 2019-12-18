@@ -22,8 +22,11 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@types/jquery": "^3.3.31",
+    "adal-angular": "^1.0.17",
     "hammerjs": "^2.0.8",
     "ng2-pdf-viewer": "^6.0.2",
+    "ngx-powerbi": "^2.0.0",
+    "powerbi-client": "^2.8.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

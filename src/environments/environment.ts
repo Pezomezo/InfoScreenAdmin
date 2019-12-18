@@ -3,7 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiEndPoint: '',
+  powerBIEndpoint: 'https://analysis.windows.net/powerbi/api',
+  groupId: '',
+  adalConfig: {
+    tenant: '097464b8-069c-453e-9254-c17ec707310d',
+    ClientId: '37213841-4716-4b21-9197-ea0a38448187',
+    cacheLocation: 'localStorage',
+    redirectUri: `${window.location.origin}`,
+    popUp: false
+  }
+
 };
 
 /*

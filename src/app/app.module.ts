@@ -18,6 +18,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { GroupListComponent } from './group-list/group-list.component';
 import { UrlListComponent } from './url-list/url-list.component';
 import { MagicComponent } from './magic/magic.component';
+import { IndividualScreensListComponent } from './individual-screens-list/individual-screens-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { MagicComponent } from './magic/magic.component';
     GroupListComponent,
     UrlListComponent,
     MagicComponent,
+    IndividualScreensListComponent,
   ],
   imports: [
     BrowserModule,

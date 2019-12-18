@@ -1,8 +1,10 @@
+import { AdalService } from './../API_service/adal.service';
 import { URLService } from './../API_service/api.url.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { URL } from '../API_service/models/URL.model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-magic',
@@ -19,7 +21,8 @@ export class MagicComponent implements OnInit {
   constructor( private http: URLService,
                private route: ActivatedRoute,
                private router: Router,
-               private sanitizer: DomSanitizer) { }
+               private sanitizer: DomSanitizer,
+               private adalService: AdalService) { }
 
   ngOnInit() {
     const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
@@ -31,35 +34,9 @@ export class MagicComponent implements OnInit {
       console.log('Selected URL: ' + this.selectedUrl);
       this.trustedURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.selectedUrl.URL);
     });
-    this.m.addEventListener('mousedown', this.mouseDown, true);
-    this.m.addEventListener('mouseup', this.mouseUp, true);
-    this.m.addEventListener('mousemove', this.move, true);
+
   }
   gotoHeroes() {
     this.router.navigate(['/urls']);
-  }
-
-  mouseUp() {
-    this.isDown = false;
-  }
-
-  mouseDown(e) {
-    this.isDown = true;
-    this.offset.push((this.m.offsetLeft - e.clientX));
-    this.offset.push((this.m.offsetTop - e.clientY));
-  }
-
-  move(event) {
-    event.preventDefault();
-    if (this.isDown) {
-        this.mousePosition = {
-
-            x : event.clientX,
-            y : event.clientY
-
-        };
-        this.m.style.left = (this.mousePosition.x + this.offset[0]) + 'px';
-        this.m.style.top  = (this.mousePosition.y + this.offset[1]) + 'px';
-    }
   }
 }

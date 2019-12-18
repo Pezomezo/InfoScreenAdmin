@@ -71,6 +71,7 @@ export class GroupListComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.getCollections().subscribe(data => {
+      console.log(data);
       this.Collections = data.response;
       this.getBiggestGroupNumber(this.Collections);
       this.presentationList = this.sortGroups(
