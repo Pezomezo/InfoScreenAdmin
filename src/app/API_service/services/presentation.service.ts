@@ -3,7 +3,6 @@ import { ResultModel } from '../models/Result.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
-import { MagicSettings } from '../models/MagicSettings.model';
 import { PresentationSettings } from '../models/PresentationSettings.model';
 
 @Injectable({
@@ -16,7 +15,7 @@ export class PresentationService {
   getPresentations(id: number): Observable<ResultModel<PresentationSettings>> {
     return this.http.get<ResultModel<PresentationSettings>>(this.urlRoute + '/{id}').pipe(
       tap(_ => console.log('fetched Collections')),
-      catchError(this.handleError<ResultModel<PresentationSettings>>('getMagic', null))
+      catchError(this.handleError<ResultModel<PresentationSettings>>('getPresentation', null))
     );
   }
 
@@ -30,14 +29,15 @@ export class PresentationService {
   deleteDeletePresentation(id: number) {
     return this.http.delete(this.urlRoute + '/${id}').pipe(
       tap(_ => console.log('deleted URL')),
-      catchError(this.handleError<ResultModel<PresentationSettings>>('deleteMagic', null))
+      catchError(this.handleError<ResultModel<PresentationSettings>>('deletePresentation', null))
     );
   }
 
   patchPresentation(id: number, url: PresentationSettings) {
-    return this.http.patch(this.urlRoute + '/' + id, url).pipe(
+    console.log('This is what we got out of it: ' + url.Repetition);
+    return this.http.patch(this.urlRoute + '/' + id.toString(), url).pipe(
       tap(_ => console.log('patched URL')),
-      catchError(this.handleError<ResultModel<PresentationSettings>>('patchMagic', null))
+      catchError(this.handleError<ResultModel<PresentationSettings>>('patchPresentation', null))
     );
   }
 

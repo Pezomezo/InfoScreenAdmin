@@ -7,7 +7,8 @@
                   background-color: darkgrey;
                   margin: 4px;" *ngFor="let item of urlPresentation" >
   <a style="padding-inline-end: 10%;">{{item.UrlName}}</a>
-  <button class="list_button" [class.selected]="item === selectedURL" (click)="magiClick(item)"  mat-button >Magic</button>
-  <button class="list_button" [class.selected]="item === selectedPresentation" (click)="changePresentationSettings(item)"  mat-button>Presentation Settings</button>
+  <button  mat-raised-button color="primary" [class.selected]="item === selectedURL" (click)="magiClick(item)"  mat-button >Magic</button>
+  <button  mat-raised-button color="accent" [class.selected]="item === selectedPresentation" (click)="changePresentationSettings(item)"  mat-button>Presentation Settings</button>
+  <button mat-mini-fab color="warn" >X</button>
 </mat-list>
 </div>
