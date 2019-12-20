@@ -8,6 +8,6 @@
                   margin: 4px;" *ngFor="let item of urlPresentation" >
   <a style="padding-inline-end: 10%;">{{item.UrlName}}</a>
   <button class="list_button" [class.selected]="item === selectedURL" (click)="magiClick(item)"  mat-button >Magic</button>
-  <button class="list_button" mat-button>Presentation Settings</button>
+  <button class="list_button" [class.selected]="item === selectedPresentation" (click)="changePresentationSettings(item)"  mat-button>Presentation Settings</button>
 </mat-list>
 </div>
