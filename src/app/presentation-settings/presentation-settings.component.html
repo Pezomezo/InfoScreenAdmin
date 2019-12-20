@@ -1,0 +1,16 @@
+<p mat-dialog-title >Presentation Settings</p>
+
+<div mat-dialog-content>
+  <a>Repetition</a>
+  <input matInput [(ngModel)]="data.Repetition" >
+  <a>Time-frame</a>
+  <input matInput [(ngModel)]="data.TimeFrame">
+  </div>
+  <div style="margin-top: 10px;">
+    <a>Date</a>
+    <input matInput [(ngModel)]="data.StartDate" >
+</div>
+<mat-dialog-actions>
+  <button mat-button (click)="close()" >cancel</button>
+  <button mat-button  [mat-dialog-close]="data" >Save</button>
+</mat-dialog-actions>

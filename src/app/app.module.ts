@@ -23,6 +23,7 @@ import { RegisterComponent } from './register/register.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CreateUrlComponent } from './create-url/create-url.component';
+import { PresentationSettingsComponent } from './presentation-settings/presentation-settings.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { CreateUrlComponent } from './create-url/create-url.component';
     MagicComponent,
     LoginComponent,
     RegisterComponent,
-    CreateUrlComponent
+    CreateUrlComponent,
+    PresentationSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { CreateUrlComponent } from './create-url/create-url.component';
     MatFormFieldModule
   ],
   entryComponents: [
-    CreateUrlComponent
+    CreateUrlComponent,
+    PresentationSettingsComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -16,6 +16,8 @@ html {
   height: 100%;
   border: 3px solid #4286f4;
   box-sizing: border-box;
+  overflow: inherit;
+
 }
 
 .resizable .resizers .resizer{
