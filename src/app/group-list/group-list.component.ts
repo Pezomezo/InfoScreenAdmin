@@ -24,6 +24,11 @@ export class GroupListComponent implements OnInit {
   infoSceen: InfoScreenPC = new InfoScreenPC();
   url: URL = new URL();
   numberList: number[] = [0];
+  powerStates = [
+    {state: 'ON'},
+    {state: 'OFF'},
+    {state: 'SLEEP'}
+  ];
   GroupNO = 0;
   InfoScreenNO = 0;
   counter = 0;

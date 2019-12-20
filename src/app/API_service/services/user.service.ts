@@ -12,8 +12,8 @@ export class UserService {
 
 
   register(user: User) {
-    console.log('newly registered user: ' + user.username);
-    return this.http.post(this.apiRoute + '/signup', user);
-}
+    console.log('newly registered user: ' + user.username + ', ' + user.password);
+    return this.http.post<User>(this.apiRoute + '/signup', user);
+  }
 
 }

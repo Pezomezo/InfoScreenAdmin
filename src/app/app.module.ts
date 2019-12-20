@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatMenuModule, MatIconModule, MatGridListModule, MatDialogModule, MAT_LABEL_GLOBAL_OPTIONS  } from '@angular/material';
+import { MatMenuModule, MatIconModule, MatGridListModule, MatDialogModule, MAT_LABEL_GLOBAL_OPTIONS, MatFormFieldModule  } from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -50,7 +50,8 @@ import { CreateUrlComponent } from './create-url/create-url.component';
     PdfViewerModule,
     ReactiveFormsModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule
   ],
   entryComponents: [
     CreateUrlComponent
