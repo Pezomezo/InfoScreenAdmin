@@ -1,4 +1,3 @@
-import { AdalService } from '../API_service/services/adal.service';
 import { URLService } from '../API_service/services/api.url.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -41,6 +40,7 @@ export class MagicComponent implements OnInit {
       // tslint:disable-next-line: max-line-length
       this.extractGroupAndReportID('https://app.powerbi.com/groups/34a31c1c-d876-4208-8d78-c3f7b1407f9f/dashboards/36f4d1ed-3c6a-4a47-bb45-be75e276be6e');
     });
+
     this.makeResizableDiv('.resizable');
     const doc = document.getElementById('.powerBIFrame');
     doc.style.top = this.topBind.toString() + 'px;';
@@ -133,6 +133,5 @@ export class MagicComponent implements OnInit {
       }
     }
   }
-
 
 }

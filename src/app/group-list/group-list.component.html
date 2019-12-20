@@ -25,14 +25,16 @@
   <mat-grid-tile-header>
     <h3>{{ item.InfoScreenName }}</h3>
   </mat-grid-tile-header>
-
+  
   <h5>Assigned URL-s</h5>
       <div *ngFor="let pcItem of item.urls">
         <div class="grid-item">{{ pcItem.UrlName }}</div>
       </div>
+  
   <mat-grid-tile-footer style="background-color: transparent;">
     <button class="btn btn-primary" type="submit">edit</button>
   </mat-grid-tile-footer>
 
 </mat-grid-tile>
 </mat-grid-list>
+

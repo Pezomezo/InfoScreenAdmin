@@ -3,6 +3,7 @@ html {
   background: black;
 }
 .resizable {
+  background: white;
   width: 100px;
   height: 100px;
   position: absolute;
@@ -16,6 +17,7 @@ html {
   border: 3px solid #4286f4;
   box-sizing: border-box;
   overflow: inherit;
+
 }
 
 .resizable .resizers .resizer{
