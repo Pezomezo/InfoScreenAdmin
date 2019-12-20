@@ -1,4 +1,3 @@
-import { AdalService } from '../API_service/services/adal.service';
 import { URLService } from '../API_service/services/api.url.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -23,8 +22,7 @@ export class MagicComponent implements OnInit {
   constructor( private http: URLService,
                private route: ActivatedRoute,
                private router: Router,
-               private sanitizer: DomSanitizer,
-               private adalService: AdalService) { }
+               private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
