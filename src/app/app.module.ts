@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatMenuModule, MatIconModule, MatGridListModule  } from '@angular/material';
+import { MatMenuModule, MatIconModule, MatGridListModule, MatDialogModule, MAT_LABEL_GLOBAL_OPTIONS  } from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -18,11 +18,11 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { GroupListComponent } from './group-list/group-list.component';
 import { UrlListComponent } from './url-list/url-list.component';
 import { MagicComponent } from './magic/magic.component';
-import { IndividualScreensListComponent } from './individual-screens-list/individual-screens-list.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CreateUrlComponent } from './create-url/create-url.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +30,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     GroupListComponent,
     UrlListComponent,
     MagicComponent,
-    IndividualScreensListComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CreateUrlComponent
   ],
   imports: [
     BrowserModule,
@@ -48,10 +48,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatGridListModule,
     HttpClientModule,
     PdfViewerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    FormsModule
+  ],
+  entryComponents: [
+    CreateUrlComponent
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    {provide: MAT_LABEL_GLOBAL_OPTIONS, useValue: {float: 'always'}}
   ],
   bootstrap: [AppComponent]
 })

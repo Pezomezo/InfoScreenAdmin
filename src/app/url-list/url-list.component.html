@@ -1,5 +1,5 @@
 <p>URL edit page</p>
-<button>+</button>
+<button mat-raised-button (click)="createUrl()" >+</button>
 <div style="width:500px; position:relative;">
   <mat-list style="display: flex;
                   flex-direction: row;
@@ -7,7 +7,7 @@
                   background-color: darkgrey;
                   margin: 4px;" *ngFor="let item of urlPresentation" >
   <a style="padding-inline-end: 10%;">{{item.UrlName}}</a>
-  <button class="list_button" [class.selected]="item === selectedURL" (click)="magiClick(item)"  mat-button [routerLink]="['/magic', item.URLID]" >Magic</button>
+  <button class="list_button" [class.selected]="item === selectedURL" (click)="magiClick(item)"  mat-button >Magic</button>
   <button class="list_button" mat-button>Presentation Settings</button>
 </mat-list>
 </div>

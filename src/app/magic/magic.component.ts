@@ -14,6 +14,8 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class MagicComponent implements OnInit {
   selectedUrl: URL;
   trustedURL: SafeUrl;
+  GroupID: string;
+  DashboardID: string;
   m = document.getElementById('move');
   isDown = false;
   offset: number[] = [ 0 , 0 ];
@@ -32,11 +34,20 @@ export class MagicComponent implements OnInit {
       console.log('indie http :  ' + data.response[0].URL);
       this.selectedUrl = data.response[0];
       console.log('Selected URL: ' + this.selectedUrl);
-      this.trustedURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.selectedUrl.URL);
+      // this.trustedURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.selectedUrl.URL);
+      // tslint:disable-next-line: max-line-length
+      this.extractGroupAndReportID('https://app.powerbi.com/groups/34a31c1c-d876-4208-8d78-c3f7b1407f9f/dashboards/36f4d1ed-3c6a-4a47-bb45-be75e276be6e');
     });
-
   }
-  gotoHeroes() {
+// https://app.powerbi.com/groups/34a31c1c-d876-4208-8d78-c3f7b1407f9f/dashboards/36f4d1ed-3c6a-4a47-bb45-be75e276be6e
+  extractGroupAndReportID(url) {
+    const keywords: [] = url.split('/');
+    keywords.forEach(value => {
+      console.log(value);
+    });
+  }
+
+  back() {
     this.router.navigate(['/urls']);
   }
 }

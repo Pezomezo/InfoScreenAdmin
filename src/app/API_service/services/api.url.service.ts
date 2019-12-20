@@ -1,16 +1,17 @@
+import { AuthenticationService } from './authentication.service';
 import { Observable } from 'rxjs';
 import { URL } from '../models/URL.model';
 import { ResultModel } from '../models/Result.model';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class URLService {
-  urlRoute = '/api/presentation';
   private constructor(private http: HttpClient) { }
+  urlRoute = '/api/presentation';
 
   getURLs(): Observable<ResultModel<URL>> {
     return this.http.get<ResultModel<URL>>(this.urlRoute).pipe(
@@ -26,11 +27,10 @@ export class URLService {
       catchError(this.handleError<ResultModel<URL>>('getUrl', null))
     );
   }
-
-  postURL(url: URL) {
-    return this.http.post(this.urlRoute, url).pipe(
-      tap(_ => console.log('posted URL')),
-      catchError(this.handleError<ResultModel<URL>>('postURL', null))
+  postURL(url: URL): Observable<URL> {
+    console.log('Inside Post URL: ' + url.MagicHeight + ' - ' + url.MagicWidht);
+    return this.http.post<URL>(this.urlRoute, url).pipe(
+      catchError(this.handleError('postURL', url))
     );
   }
 

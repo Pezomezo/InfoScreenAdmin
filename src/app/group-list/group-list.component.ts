@@ -67,7 +67,7 @@ export class GroupListComponent implements OnInit {
           this.infoSceen.Name = value.InfoScreenPCName;
           this.infoSceen.Power_State = value.PowerState;
           this.groupListModel.InfoScreens.push(this.infoSceen);
-          this.url.URLID = value.UrlID;
+          this.url.UrlID = value.UrlID;
           this.url.UrlName = value.UrlName;
           this.url.URL = value.URL;
           this.url.MagicID = value.MagicID;
@@ -101,7 +101,7 @@ export class GroupListComponent implements OnInit {
           this.individualModel.InfoScreenName = value.InfoScreenPCName;
           this.individualModel.PowerState = value.PowerState;
           console.log('ID: ' + this.individualModel.InfoScreenPCID + ' - Name: ' + this.individualModel.InfoScreenName)
-          this.url.URLID = value.UrlID;
+          this.url.UrlID = value.UrlID;
           this.url.URL = value.URL;
           this.url.UrlName = value.UrlName;
           this.url.PresentationID = value.PresentationID;
