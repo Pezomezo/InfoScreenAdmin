@@ -15,3 +15,24 @@
     </div>
   </mat-grid-tile>
 </mat-grid-list>
+<h1>Individual Info Screens</h1>
+<mat-grid-list cols="5" rowHeight="175px" gutterSize="5px">
+  <mat-grid-tile
+    *ngFor="let item of presentationListIndividuals"
+    [colspan]="2"
+    [rowspan]="1"
+  >
+  <mat-grid-tile-header>
+    <h3>{{ item.InfoScreenName }}</h3>
+  </mat-grid-tile-header>
+
+  <h5>Assigned URL-s</h5>
+      <div *ngFor="let pcItem of item.urls">
+        <div class="grid-item">{{ pcItem.UrlName }}</div>
+      </div>
+  <mat-grid-tile-footer style="background-color: transparent;">
+    <button class="btn btn-primary" type="submit">edit</button>
+  </mat-grid-tile-footer>
+
+</mat-grid-tile>
+</mat-grid-list>

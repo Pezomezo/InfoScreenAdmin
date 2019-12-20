@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
-import { ResultModel } from './models/Result.model';
+import { ResultModel } from '../models/Result.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
-import { MagicSettings } from './models/MagicSettings.model';
+import { MagicSettings } from '../models/MagicSettings.model';
 
 @Injectable({
   providedIn: 'root',

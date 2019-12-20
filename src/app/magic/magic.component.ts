@@ -1,8 +1,10 @@
-import { URLService } from './../API_service/api.url.service';
+import { AdalService } from '../API_service/services/adal.service';
+import { URLService } from '../API_service/services/api.url.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { URL } from '../API_service/models/URL.model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-magic',
@@ -12,6 +14,8 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class MagicComponent implements OnInit {
   selectedUrl: URL;
   trustedURL: SafeUrl;
+  GroupID: string;
+  DashboardID: string;
   m = document.getElementById('move');
   isDown = false;
   offset: number[] = [ 0 , 0 ];
@@ -19,7 +23,8 @@ export class MagicComponent implements OnInit {
   constructor( private http: URLService,
                private route: ActivatedRoute,
                private router: Router,
-               private sanitizer: DomSanitizer) { }
+               private sanitizer: DomSanitizer,
+               private adalService: AdalService) { }
 
   ngOnInit() {
     const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
@@ -29,37 +34,20 @@ export class MagicComponent implements OnInit {
       console.log('indie http :  ' + data.response[0].URL);
       this.selectedUrl = data.response[0];
       console.log('Selected URL: ' + this.selectedUrl);
-      this.trustedURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.selectedUrl.URL);
+      // this.trustedURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.selectedUrl.URL);
+      // tslint:disable-next-line: max-line-length
+      this.extractGroupAndReportID('https://app.powerbi.com/groups/34a31c1c-d876-4208-8d78-c3f7b1407f9f/dashboards/36f4d1ed-3c6a-4a47-bb45-be75e276be6e');
     });
-    this.m.addEventListener('mousedown', this.mouseDown, true);
-    this.m.addEventListener('mouseup', this.mouseUp, true);
-    this.m.addEventListener('mousemove', this.move, true);
   }
-  gotoHeroes() {
+// https://app.powerbi.com/groups/34a31c1c-d876-4208-8d78-c3f7b1407f9f/dashboards/36f4d1ed-3c6a-4a47-bb45-be75e276be6e
+  extractGroupAndReportID(url) {
+    const keywords: [] = url.split('/');
+    keywords.forEach(value => {
+      console.log(value);
+    });
+  }
+
+  back() {
     this.router.navigate(['/urls']);
-  }
-
-  mouseUp() {
-    this.isDown = false;
-  }
-
-  mouseDown(e) {
-    this.isDown = true;
-    this.offset.push((this.m.offsetLeft - e.clientX));
-    this.offset.push((this.m.offsetTop - e.clientY));
-  }
-
-  move(event) {
-    event.preventDefault();
-    if (this.isDown) {
-        this.mousePosition = {
-
-            x : event.clientX,
-            y : event.clientY
-
-        };
-        this.m.style.left = (this.mousePosition.x + this.offset[0]) + 'px';
-        this.m.style.top  = (this.mousePosition.y + this.offset[1]) + 'px';
-    }
   }
 }

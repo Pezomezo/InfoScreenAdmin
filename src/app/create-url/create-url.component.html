@@ -1,0 +1,27 @@
+<p mat-dialog-title>Create new URL</p>
+
+<div  mat-dialog-content >
+  <h6>Url info <br></h6>
+  <a>UrlName</a>
+  <input matInput [(ngModel)]="data.UrlName" >
+  <a>URL</a>
+  <input matInput [(ngModel)]="data.URL" >
+</div>
+<div mat-dialog-content style="margin-top: 20px;">
+  <div>
+    <h6>PresentationSettings <br></h6>
+  <a>Repetition</a>
+  <input matInput [(ngModel)]="data.Repetition" >
+  <a>Time-frame</a>
+  <input matInput [(ngModel)]="data.TimeFrame">
+  </div>
+  <div style="margin-top: 10px;">
+    <a>Date</a>
+    <input matInput [(ngModel)]="data.StartDate" >
+  </div>
+</div>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()" >cancel</button>
+  <button mat-button  [mat-dialog-close]="data" >Save</button>
+</mat-dialog-actions>

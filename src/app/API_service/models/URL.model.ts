@@ -1,12 +1,12 @@
 
 export class URL {
-  URL_ID: number;
-  Url_Name: string;
+  UrlID: number;
+  UrlName: string;
   URL: string;
   PresentationID: number;
   Repetition: string;
-  Time_Frame: string;
-  Date: string;
+  TimeFrame: string;
+  StartDate: string;
   MagicID: number;
   MagicWidht: number;
   MagicHeight: number;
