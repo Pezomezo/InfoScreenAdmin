@@ -6,7 +6,8 @@ export class Collections
   GroupName: string;
   InfoScreenPCID: number;
   InfoScreenPCName: string;
-  PowerState: string;
+  PowerState: number;
+  StateName: string;
   UrlID: number;
   UrlName: string;
   URL: string;

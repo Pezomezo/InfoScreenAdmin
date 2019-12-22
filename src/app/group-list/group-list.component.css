@@ -1,18 +1,65 @@
-.btn
-{
-  float: rigth;
+.btn {
+  box-shadow: 5px 5px 5px grey;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 1 auto 2;
-  background-color: #2196F3;
-  padding: 1px;
+.example-viewport {
+  height: 50px;
+  width: 150px;
 }
-.grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 3px solid rgba(0, 0, 0, 0.8);
-  padding: 5px;
-  font-size: 7px;
-  text-align: center;
+
+.example-item {
+  height: 20px;
+}
+
+.GroupComp {
+  font-size: 0.7rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.h5 {
+  margin-top: 5%;
+  margin-left: 0;
+  margin-right: auto;
+  margin-bottom: 3%;
+}
+
+mat-grid-tile {
+  background-color: antiquewhite;
+  box-shadow: 5px 5px 5px grey;
+  align-content: flex-start;
+  transition: all .2s ease-in-out;
+  overflow: hidden;
+
+}
+
+mat-grid-tile:hover {
+  overflow: hidden;
+  background-color: rgb(245, 221, 190);
+  box-shadow: 5px 5px 5px rgb(29, 29, 29);
+  transform: scale(1.1); 
+  z-index: 10;
+  
+}
+
+mat-grid-list {
+  margin-top: auto;
+  margin-left: 10%;
+  margin-right: auto;
+  margin-bottom: auto;
+}
+
+mat-grid-tile-header {
+  margin-bottom: 20%;
+}
+
+.headerDiv {
+  margin-bottom: 20%;
+}
+
+.insideElement {
+  margin-top: auto;
+  margin-left: 0;
+  margin-right: auto;
+  margin-bottom: auto;
 }

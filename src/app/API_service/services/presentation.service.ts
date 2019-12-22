@@ -9,7 +9,7 @@ import { PresentationSettings } from '../models/PresentationSettings.model';
   providedIn: 'root',
 })
 export class PresentationService {
-  urlRoute = '/api/presentation';
+  urlRoute = '/api/settings';
   private constructor(private http: HttpClient) { }
 
   getPresentations(id: number): Observable<ResultModel<PresentationSettings>> {
@@ -34,8 +34,8 @@ export class PresentationService {
   }
 
   patchPresentation(id: number, url: PresentationSettings) {
-    console.log('This is what we got out of it: ' + url.Repetition);
-    return this.http.patch(this.urlRoute + '/' + id.toString(), url).pipe(
+    console.log('This is what we got out of it: ' + url.RepetitionName);
+    return this.http.patch(this.urlRoute + '/' + id, url).pipe(
       tap(_ => console.log('patched URL')),
       catchError(this.handleError<ResultModel<PresentationSettings>>('patchPresentation', null))
     );

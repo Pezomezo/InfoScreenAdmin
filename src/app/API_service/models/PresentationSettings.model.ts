@@ -1,8 +1,9 @@
+import { RepetitionModel } from './Repetition.model';
 
-export class PresentationSettings
-{
+export class PresentationSettings {
   ID: number;
-  Repetition: string;
+  RepetitionID: number;
+  RepetitionName: string;
   TimeFrame: string;
-  StartDate: string;
+  StartDate: Date;
 }

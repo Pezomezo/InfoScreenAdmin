@@ -5,7 +5,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatMenuModule, MatIconModule, MatGridListModule, MatDialogModule, MAT_LABEL_GLOBAL_OPTIONS, MatFormFieldModule  } from '@angular/material';
+import { MatMenuModule, MatIconModule,
+         MatGridListModule, MatDialogModule,
+         MAT_LABEL_GLOBAL_OPTIONS,
+         MatFormFieldModule, MatTooltipModule } from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -24,6 +29,7 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CreateUrlComponent } from './create-url/create-url.component';
 import { PresentationSettingsComponent } from './presentation-settings/presentation-settings.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +59,11 @@ import { PresentationSettingsComponent } from './presentation-settings/presentat
     ReactiveFormsModule,
     MatDialogModule,
     FormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ScrollingModule,
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   entryComponents: [
     CreateUrlComponent,

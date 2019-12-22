@@ -1,4 +1,56 @@
-.list_button {
-  background-color: bisque;
-  margin-right: 40px;
+.containerDiv {
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+}
+
+.createBTN {
+  margin-top: auto;
+  margin-left: 85%;
+  margin-right: 0;
+  margin-bottom: 3%;
+}
+
+.createBTN:hover {
+  zoom: 110%;
+  z-index: 10;
+}
+
+.NameClass {
+  margin-top: auto;
+  margin-left: 0;
+  margin-right: auto;
+  margin-bottom: auto;
+}
+
+.buttonsClass {
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: 0;
+  margin-bottom: auto;
+}
+
+mat-list {
+  background: transparent;
+  flex-direction: row;
+  align-items: center;
+  margin: 4px;
+  box-shadow: 5px 5px 5px grey;
+}
+
+mat-list:hover {
+  zoom: 105%;
+  z-index: 10;
+}
+
+.form-control {
+  background-color: beige;
+}
+
+
+.divider{
+  width:10px;
+  height:auto;
+  display:inline-block;
 }

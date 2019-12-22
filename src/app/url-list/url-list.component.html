@@ -1,14 +1,28 @@
-<p>URL edit page</p>
-<button mat-raised-button (click)="createUrl()" >+</button>
-<div style="width:500px; position:relative;">
-  <mat-list style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  background-color: darkgrey;
-                  margin: 4px;" *ngFor="let item of urlPresentation" >
-  <a style="padding-inline-end: 10%;">{{item.UrlName}}</a>
-  <button  mat-raised-button color="primary" [class.selected]="item === selectedURL" (click)="magiClick(item)"  mat-button >Magic</button>
-  <button  mat-raised-button color="accent" [class.selected]="item === selectedPresentation" (click)="changePresentationSettings(item)"  mat-button>Presentation Settings</button>
-  <button mat-mini-fab color="warn" >X</button>
+<h1>Manage URL-s</h1>
+<div>
+  <button class="createBTN" mat-mini-fab color="accent"
+          matTooltip="Create new URL"
+          matTooltipPosition="left" (click)="createUrl()" >+</button>
+</div>
+<div class="containerDiv">
+  <mat-list  *ngFor="let item of urlPresentation" >
+    <mat-list-item class="form-control" >
+      <div class="NameClass">
+        <a>{{item.UrlName}}</a>
+      </div>
+      <div class="buttonsClass">
+        <button  mat-raised-button color="primary"
+        matTooltip="Change HTML grab section" 
+        matTooltipPosition="below" [class.selected]="item === selectedURL" (click)="magiClick(item)"  mat-button >Magic</button>
+        <div class="divider"></div>
+        <button  mat-raised-button color="accent"
+        matTooltip="Change Presentation Settings"
+        matTooltipPosition="below" [class.selected]="item === selectedPresentation" (click)="changePresentationSettings(item)"  mat-button>Settings</button>
+        <div class="divider"></div>
+        <button mat-mini-fab color="warn"
+        matTooltip="Delete URL"
+        matTooltipPosition="below" >X</button>
+      </div>
+    </mat-list-item >
 </mat-list>
 </div>

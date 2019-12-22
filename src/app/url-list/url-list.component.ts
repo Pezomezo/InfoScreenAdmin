@@ -7,6 +7,7 @@ import { URLService } from '../API_service/services/api.url.service';
 import { MatDialog } from '@angular/material';
 import { CreateUrlComponent } from '../create-url/create-url.component';
 import { PresentationService } from '../API_service/services/presentation.service';
+import { RepetitionModel } from '../API_service/models/Repetition.model';
 
 @Component({
   selector: 'app-url-list',
@@ -38,15 +39,16 @@ export class UrlListComponent implements OnInit {
   changePresentationSettings(item: URL) {
     const returnVal: PresentationSettings = new PresentationSettings();
     const dialogRef = this.matdial.open(PresentationSettingsComponent, {
-      data: {Repetition: item.Repetition, StartDate: item.StartDate, TimeFrame: item.TimeFrame}
+      data: {ID: item.PresentationID, Repetition: item.Repetition, RepetitionName: item.RepetitionName, StartDate: item.StartDate, TimeFrame: item.TimeFrame}
     });
 
     dialogRef.afterClosed().subscribe(data => {
-      returnVal.Repetition = data.Repetition;
-      returnVal.StartDate = data.StartDate;
+      console.log('Data returned from pop-up: ' + data.ID + ' - ' + data.RepetitionName);
+      returnVal.RepetitionName = data.RepetitionName;
+      returnVal.StartDate =  new Date(data.StartDate.replace('/', '-'));
       returnVal.TimeFrame = data.TimeFrame;
       console.log(data.Repetition + ' - ' + data.StartDate + ' - ' + data.TimeFrame);
-      console.log(returnVal.Repetition + ' - ' + returnVal.StartDate + ' - ' + returnVal.TimeFrame);
+      console.log(returnVal.RepetitionName + ' - ' + returnVal.StartDate + ' - ' + returnVal.TimeFrame);
       if (returnVal) {
         console.log(item.PresentationID );
         this.presentationService.patchPresentation(item.PresentationID , returnVal).subscribe(result => {

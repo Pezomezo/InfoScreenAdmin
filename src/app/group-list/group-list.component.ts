@@ -5,6 +5,8 @@ import { Collections } from './../API_service/models/Collection.model';
 import { GroupListModel } from './../API_service/models/group-list.model';
 import { Component, OnInit } from '@angular/core';
 import { CollectionsService } from '../API_service/services/api.collection.service';
+import { PowerStateModel } from '../API_service/models/PowerState.model';
+import { DropdownService } from '../API_service/services/drobdown.service';
 
 @Component({
   selector: 'app-group-list',
@@ -24,20 +26,23 @@ export class GroupListComponent implements OnInit {
   infoSceen: InfoScreenPC = new InfoScreenPC();
   url: URL = new URL();
   numberList: number[] = [0];
-  powerStates = [
-    {state: 'ON'},
-    {state: 'OFF'},
-    {state: 'SLEEP'}
-  ];
+  powerStates: PowerStateModel[] = [];
   GroupNO = 0;
   InfoScreenNO = 0;
   counter = 0;
-  constructor(private apiService: CollectionsService) { }
+  constructor(private apiService: CollectionsService,
+              private dropdownService: DropdownService) { }
 
   // 1. Get the biggest group number
   // 2. make loop with as many iterations as the groupnumber
   // 3. inside this loop iterate through the database values and sort them into the groupListModels.
   // Present the list
+
+  getPowerStates() {
+    this.dropdownService.getPowerStates().subscribe(data => {
+      this.powerStates = data.response;
+    });
+  }
 
   getBiggestGroupNumber(collection: Collections[]) {
     collection.forEach(value => {
@@ -70,7 +75,7 @@ export class GroupListComponent implements OnInit {
           this.groupListModel.GroupName = value.GroupName;
           this.infoSceen.ID = value.InfoScreenPCID;
           this.infoSceen.Name = value.InfoScreenPCName;
-          this.infoSceen.Power_State = value.PowerState;
+          this.infoSceen.PowerState = value.PowerState;
           this.groupListModel.InfoScreens.push(this.infoSceen);
           this.url.UrlID = value.UrlID;
           this.url.UrlName = value.UrlName;
@@ -135,6 +140,7 @@ export class GroupListComponent implements OnInit {
         this.GroupNO,
         this.counter
       );
+      this.getPowerStates();
     });
 
     this.apiService.getCollections('individual').subscribe(result => {

@@ -1,23 +1,34 @@
 <h1>Info Screen Groups</h1>
-<mat-grid-list cols="5" rowHeight="175px">
-  <mat-grid-tile
+<mat-grid-list gutterSize="5px"  class="GroupComp" cols="5" rowHeight="175px">
+  <mat-grid-tile 
     *ngFor="let item of presentationList"
     [colspan]="2"
     [rowspan]="1"
   >
-    <div class="grid-container">
-      <h4 class="grid-item">{{ item.GroupName }}</h4>
-      <p>Assigned Computers</p>
-      <div class="grid-container" *ngFor="let pcItem of item.InfoScreens">
-        <div class="grid-item">{{ pcItem.Name }}</div>
-      </div>
-      <button class="btn">edit</button>
+  <div class="headerDiv">
+    <mat-grid-tile-header>
+      <h3>{{ item.GroupName }}</h3>
+    </mat-grid-tile-header>
+  </div>
+  
+    <div class="insideElement">
+      <h5>Assigned Computers</h5>
+      <cdk-virtual-scroll-viewport itemSize="10" class="example-viewport">
+        <div *cdkVirtualFor="let pcItem of item.InfoScreens" class="example-item">{{ pcItem.Name }}</div>
+      </cdk-virtual-scroll-viewport>
+      
     </div>
+  <mat-grid-tile-footer style="background-color: transparent;">
+    <div style="margin-left:auto; margin-right:0;">
+      <button class="btn btn-primary" type="submit">edit</button>
+    </div>
+  </mat-grid-tile-footer>
   </mat-grid-tile>
 </mat-grid-list>
+
 <h1>Individual Info Screens</h1>
-<mat-grid-list cols="5" rowHeight="175px" gutterSize="5px">
-  <mat-grid-tile
+<mat-grid-list class="GroupComp" cols="5" rowHeight="175px" gutterSize="5px">
+  <mat-grid-tile 
     *ngFor="let item of presentationListIndividuals"
     [colspan]="2"
     [rowspan]="1"
@@ -25,14 +36,21 @@
   <mat-grid-tile-header>
     <h3>{{ item.InfoScreenName }}</h3>
   </mat-grid-tile-header>
+  <div class="insideElement">
+    <h5>Assigned URL-s</h5>
+    <div *ngFor="let pcItem of item.urls">
+      <div>{{ pcItem.UrlName }}</div>
+    </div>
+  </div>
   
-  <h5>Assigned URL-s</h5>
-      <div *ngFor="let pcItem of item.urls">
-        <div class="grid-item">{{ pcItem.UrlName }}</div>
-      </div>
   
   <mat-grid-tile-footer style="background-color: transparent;">
-    <button class="btn btn-primary" type="submit">edit</button>
+    <select required name="PowerState" >
+      <option *ngFor="let item of powerStates" [value]="item.StateName">{{item.StateName}}</option>
+    </select>
+    <div style="margin-left:auto; margin-right:0;">
+      <button class="btn btn-primary" type="submit">edit</button>
+    </div>
   </mat-grid-tile-footer>
 
 </mat-grid-tile>

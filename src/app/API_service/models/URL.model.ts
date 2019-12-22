@@ -5,6 +5,7 @@ export class URL {
   URL: string;
   PresentationID: number;
   Repetition: string;
+  RepetitionName: string;
   TimeFrame: string;
   StartDate: string;
   MagicID: number;
