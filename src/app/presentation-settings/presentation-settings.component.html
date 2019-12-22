@@ -3,7 +3,9 @@
 <div mat-dialog-content>
   <a>Repetition</a>
   <select required name="Repetition" class="form-control" >
-    <option *ngFor="let item of repetitionList"  [class.selected]="item === repetitionBind" class="form-control"  [value]="repetionBind">{{item.RepetitionName}}</option>
+    <option *ngFor="let item of repetitionList" class="form-control"
+            [value]="data.RepetitionName"
+    >{{item.RepetitionName}}</option>
   </select>
   <a>{{repetionBind}}<br></a>
   <a>Time-frame</a>

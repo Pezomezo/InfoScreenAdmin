@@ -13,6 +13,8 @@ export class URLService {
   private constructor(private http: HttpClient) { }
   urlRoute = '/api/presentation';
 
+  formData: URL;
+
   getURLs(): Observable<ResultModel<URL>> {
     return this.http.get<ResultModel<URL>>(this.urlRoute).pipe(
       tap(_ => console.log('fetched Collections')),

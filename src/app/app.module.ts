@@ -63,7 +63,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ScrollingModule,
     MatTooltipModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    FormsModule
   ],
   entryComponents: [
     CreateUrlComponent,

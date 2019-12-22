@@ -1,32 +1,107 @@
-<p mat-dialog-title>Create new URL</p>
+<div class="d-flex justify-content-between">
 
-<div  mat-dialog-content >
-  <h6>Url info <br></h6>
-  <a>UrlName</a>
-  <input matInput class="form-control" required [(ngModel)]="data.UrlName" >
-  <a>URL</a>
-  <input matInput class="form-control" required [(ngModel)]="data.URL" >
+  <h4>Add new URL</h4>
+
+  <button mat-button (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+
 </div>
-<div mat-dialog-content style="margin-top: 20px;">
-  <div>
-    <h6>PresentationSettings <br></h6>
-  <a>Repetition</a>
-  <input class="form-control" required matInput [(ngModel)]="data.Repetition" >
-  <a>Time-frame</a>
-  <input class="form-control" required matInput [(ngModel)]="data.TimeFrame">
-  </div>
-  <div style="margin-top: 10px;">
-    <a>Date</a>
-    <input matInput required [matDatepicker]="picker"
-           class="form-control" type="text"
-           name="DOJ"
-           #DOJ="ngModel" [(ngModel)]="data.StartDate">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker="matDatepicker"></mat-datepicker>
+
+<div style="overflow: auto; height: auto;">
+  <form #form="ngForm" (submit)="onSubmit(form)"
+        autocomplete="off">
+    <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          URL Name
+        </span>
+      </div>
+      <input required minlength="3" type="text"
+             class="form-control" name="UrlName"
+             #URLName="ngModel"
+             [(ngModel)]="urlService.formData.UrlName">
     </div>
-</div>
+    <div class="text-left text-danger" 
+        *ngIf="URLName.invalid && URLName.touched">
+      Please Enter URL name
+    </div>
 
-<mat-dialog-actions>
-  <button mat-button (click)="close()" >cancel</button>
-  <button mat-button  [mat-dialog-close]="data" >Save</button>
-</mat-dialog-actions>
+    <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          URL
+        </span>
+      </div>
+      <input required minlength="12" type="text"
+             class="form-control" name="URL"
+             #URL="ngModel"
+             [(ngModel)]="urlService.formData.Url">
+    </div>
+    <div class="text-left text-danger" 
+        *ngIf="URL.invalid && URL.touched">
+      Please Enter a URL
+    </div>
+
+
+    <h6 style="margin-top: 5%; margin-bottom: 0;" >Presentation Settings</h6>
+    <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          Repetition
+        </span>
+      </div>
+      <select required  type="text"
+             class="form-control" name="Repetition"
+             #Repetition="ngModel"
+             [(ngModel)]="urlService.formData.RepetitionName">
+        <option *ngFor="let item of repetitions" [value]="item.RepetitionName">
+          {{item.RepetitionName}}
+        </option>
+      </select>
+    </div>
+    <div class="text-left text-danger" 
+        *ngIf="Repetition.invalid && Repetition.touched">
+      Please Select one of the options
+    </div>
+
+
+    <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          Time-Frame
+        </span>
+      </div>
+      <input required minlength="3" type="text"
+             class="form-control" name="TimeFrame"
+             #TimeFrame="ngModel"
+             [(ngModel)]="urlService.formData.TimeFrame">
+    </div>
+    <div class="text-left text-danger" 
+        *ngIf="TimeFrame.invalid && TimeFrame.touched">
+      Please input a Time-Frame
+    </div>
+
+    <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          Date
+        </span>
+      </div>
+      <input required [matDatepicker]="picker" type="text"
+             class="form-control" name="StartDate"
+             #StartDate="ngModel"
+             [(ngModel)]="urlService.formData.StartDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </div>
+    <div class="text-left text-danger" 
+        *ngIf="StartDate.invalid && StartDate.touched">
+      Please select a date
+    </div>
+
+
+    <button class="mt-4" mat-raised-button color="primary" (click)="onSubmit()" type="submit"
+      [disabled]="URLName.invalid && URL.invalid">Save</button>
+  </form>
+</div>
