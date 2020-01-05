@@ -21,7 +21,7 @@
         <div class="divider"></div>
         <button mat-mini-fab color="warn"
         matTooltip="Delete URL"
-        matTooltipPosition="below" >X</button>
+        matTooltipPosition="below" [class.selected]="item === selectedURL" (click)="deleteURL(item)" >X</button>
       </div>
     </mat-list-item >
 </mat-list>

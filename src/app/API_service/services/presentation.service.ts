@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
 import { PresentationSettings } from '../models/PresentationSettings.model';
+import { URL } from '../models/URL.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,8 @@ import { PresentationSettings } from '../models/PresentationSettings.model';
 export class PresentationService {
   urlRoute = '/api/settings';
   private constructor(private http: HttpClient) { }
+
+  formData: URL;
 
   getPresentations(id: number): Observable<ResultModel<PresentationSettings>> {
     return this.http.get<ResultModel<PresentationSettings>>(this.urlRoute + '/{id}').pipe(

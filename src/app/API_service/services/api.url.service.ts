@@ -37,14 +37,15 @@ export class URLService {
   }
 
   deleteURL(id: number) {
-    return this.http.delete(this.urlRoute + '/${id}').pipe(
+    return this.http.delete(this.urlRoute + '/' + id.toString()).pipe(
       tap(_ => console.log('deleted URL')),
       catchError(this.handleError<ResultModel<URL>>('deleteURL', null))
     );
   }
 
   patchURL(id: number, url: URL) {
-    return this.http.patch(this.urlRoute + '/{id}', url).pipe(
+    console.log(id + ' - ' + url);
+    return this.http.patch(this.urlRoute + '/' + id.toString(), url).pipe(
       tap(_ => console.log('patched URL')),
       catchError(this.handleError<ResultModel<URL>>('patchURL', null))
     );

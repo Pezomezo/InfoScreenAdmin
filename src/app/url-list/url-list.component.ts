@@ -37,46 +37,30 @@ export class UrlListComponent implements OnInit {
   }
 
   changePresentationSettings(item: URL) {
-    const returnVal: PresentationSettings = new PresentationSettings();
-    const dialogRef = this.matdial.open(PresentationSettingsComponent, {
-      data: {ID: item.PresentationID, Repetition: item.Repetition, RepetitionName: item.RepetitionName, StartDate: item.StartDate, TimeFrame: item.TimeFrame}
-    });
+    const config = new MatDialogConfig();
+    config.autoFocus = true;
+    config.disableClose = true;
+    console.log('URL LIST COMP: ' + item.UrlID + ' and presentationID: ' + item.MagicID);
+    config.data = {
+      UrlID: item.UrlID, UrlName: item.UrlName, URL: item.URL, PresentationID: item.PresentationID, Repetition: item.Repetition,
+      MagicID: item.MagicID, RepetitionName: item.RepetitionName, StartDate: item.StartDate,
+      TimeFrame: item.TimeFrame
+    };
+    this.matdial.open(PresentationSettingsComponent, config);
+  }
 
-    dialogRef.afterClosed().subscribe(data => {
-      console.log('Data returned from pop-up: ' + data.ID + ' - ' + data.RepetitionName);
-      returnVal.RepetitionName = data.RepetitionName;
-      returnVal.StartDate =  new Date(data.StartDate.replace('/', '-'));
-      returnVal.TimeFrame = data.TimeFrame;
-      console.log(data.Repetition + ' - ' + data.StartDate + ' - ' + data.TimeFrame);
-      console.log(returnVal.RepetitionName + ' - ' + returnVal.StartDate + ' - ' + returnVal.TimeFrame);
-      if (returnVal) {
-        console.log(item.PresentationID );
-        this.presentationService.patchPresentation(item.PresentationID , returnVal).subscribe(result => {
-          console.log(result);
-        });
-      }
-    });
+  deleteURL(item: URL) {
+    if (confirm('Are you sure you want to delete ' + item.UrlName + '?')) {
+      this.urlService.deleteURL(item.UrlID).subscribe(data => {
+        console.log(data);
+      });
+    }
   }
 
   createUrl() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    let returnVal: URL = null;
-    const dialogRef = this.matdial.open(CreateUrlComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe(data => {
-    //   console.log('data from the pop-up ' + data.UrlName);
-    //   data.MagicHeight = 209;
-    //   data.MagicWidht = 200;
-    //   returnVal = data;
-    //   if (returnVal) {
-    //     this.urlService.postURL(returnVal).subscribe(
-    //       response => console.log(response)
-    //    );
-    //   }
-     });
-
-
+    this.matdial.open(CreateUrlComponent, dialogConfig);
   }
 }

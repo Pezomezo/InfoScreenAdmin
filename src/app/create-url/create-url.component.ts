@@ -52,10 +52,11 @@ export class CreateUrlComponent implements OnInit {
     if (form != null) {
       form.value.MagicHeight = 250;
       form.value.MagicWidht = 250;
-      console.log(form.value);
       this.urlService.postURL(form.value).subscribe(data => {
-        console.log(data);
-      })
+           this.resetForm(form);
+           this.dialogRef.close();
+           alert('Success');
+      });
     }
   }
 

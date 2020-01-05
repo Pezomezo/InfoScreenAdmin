@@ -33,11 +33,6 @@ export class GroupListComponent implements OnInit {
   constructor(private apiService: CollectionsService,
               private dropdownService: DropdownService) { }
 
-  // 1. Get the biggest group number
-  // 2. make loop with as many iterations as the groupnumber
-  // 3. inside this loop iterate through the database values and sort them into the groupListModels.
-  // Present the list
-
   getPowerStates() {
     this.dropdownService.getPowerStates().subscribe(data => {
       this.powerStates = data.response;
